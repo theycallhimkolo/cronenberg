@@ -15,8 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Game(),
+      home: Game(501, ["Leon", "Flo", "Valentin"], false),
     );
   }
 }
-
