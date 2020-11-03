@@ -55,6 +55,10 @@ class GameState extends State<Game> {
     });
   }
 
+  void testRealtimeDatabase() {
+
+  }
+
   void undoLastValue() {
     setState(() {
       if (this.gameState.activePlayer().stack.length > 0) {
