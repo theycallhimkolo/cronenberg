@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "618839202213",
+    "firebase_url": "https://cronenberg-36459.firebaseio.com",
+    "project_id": "cronenberg-36459",
+    "storage_bucket": "cronenberg-36459.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618839202213:android:7be205ae7b2ea6c110f04c",
+        "android_client_info": {
+          "package_name": "com.example.cronenberg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618839202213-1u33bmckeg92s5b6v6etj8dbhfejm1hr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk6-w6FvE5QjBlpuD0t_3u-VbzbNSOjAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618839202213-1u33bmckeg92s5b6v6etj8dbhfejm1hr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
