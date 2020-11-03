@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cronenberg/Game.dart';
+import 'package:cronenberg/widgets/Game.dart';
 
 void main() {
   runApp(MyApp());

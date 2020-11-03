@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:cronenberg/model/GameManager.dart';
+import 'package:cronenberg/widgets/ButtonBoard.dart';
 
 class Game extends StatefulWidget {
   int startScore;
   List<String> players;
   bool doubleOut;
 
-  @override
-  GameState createState() => GameState(startScore, players, doubleOut);
   Game(int startScore, List<String> players, bool doubleOut) {
     this.startScore = startScore;
     this.players = players;
     this.doubleOut = doubleOut;
   }
+
+  @override
+  GameState createState() => GameState(startScore, players, doubleOut);
 }
 
 class GameState extends State<Game> {
@@ -70,7 +72,7 @@ class GameState extends State<Game> {
     super.initState();
   }
 
-  Widget generateButton(var value, [String label]) {
+  Widget generateButton(int value, [String label]) {
     return Expanded(
       flex: 1,
       child: Container(
@@ -160,53 +162,9 @@ class GameState extends State<Game> {
             ]),
           ),
           Expanded(
-            flex: 1,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [1, 2, 3, 4, 5].map((element) {
-                return generateButton(element);
-              }).toList(),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [6, 7, 8, 9, 10].map((element) {
-                return generateButton(element);
-              }).toList(),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [11, 12, 13, 14, 15].map((element) {
-                return generateButton(element);
-              }).toList(),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [16, 17, 18, 19, 20].map((element) {
-                return generateButton(element);
-              }).toList(),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                generateButton(25),
-                generateButton(50),
-                generateUndoButton(),
-                generateButton(0, "Missed"),
-              ],
-            ),
-          ),
+            flex: 5,
+            child: ButtonBoard(substractValue, undoLastValue),
+          )
         ],
       ),
     );
