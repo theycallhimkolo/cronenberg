@@ -69,6 +69,7 @@ class ScoreButtonState extends State<ScoreButton> {
         },
         onVerticalDragUpdate: (details) {
           y += details.primaryDelta;
+          print(y);
         },
         onVerticalDragEnd: (details) {
           this.setDragActive(false);
@@ -95,16 +96,15 @@ class ScoreButtonState extends State<ScoreButton> {
               ),
             ),
             if (this.dragActive)
-              AnimatedPositioned(
-                curve: Curves.linear,
-                top: 100,
-                duration: Duration(seconds: 3),
-                child: Text("Double"),
+              Center(
+                child: Transform.translate(
+                    offset: Offset(0.0, -25), child: Text("x2")),
               ),
             if (this.dragActive)
-              Transform.translate(
-                  offset: Offset(0.0, 50),
-                  child: Center(child: Text("Triple"))),
+              Center(
+                child: Transform.translate(
+                    offset: Offset(0.0, 25), child: Text("x3")),
+              ),
           ],
         ),
       ),
