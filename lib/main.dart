@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cronenberg/Game.dart';
+import 'package:cronenberg/widgets/Game.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Game(501, ["Leon", "Flo", "Valentin"], false),
+      home: Game(501, ["Leon", "Flo", "Valentin"], true),
     );
   }
 }
