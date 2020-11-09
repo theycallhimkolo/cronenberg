@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ScoreButton extends StatefulWidget{
+class ScoreButton extends StatefulWidget {
   Function target;
   int value;
   String label;
@@ -51,8 +51,9 @@ class ScoreButtonState extends State<ScoreButton> {
 
   double getHeight() {
     try {
-      final RenderBox renderBoxContainer = _positionButton.currentContext.findRenderObject();
-    return renderBoxContainer.size.height;
+      final RenderBox renderBoxContainer =
+          _positionButton.currentContext.findRenderObject();
+      return renderBoxContainer.size.height;
     } catch (e) {
       return 0;
     }
@@ -68,7 +69,6 @@ class ScoreButtonState extends State<ScoreButton> {
         },
         onVerticalDragUpdate: (details) {
           y += details.primaryDelta;
-          print(y);
         },
         onVerticalDragEnd: (details) {
           this.setDragActive(false);
@@ -81,12 +81,11 @@ class ScoreButtonState extends State<ScoreButton> {
         },
         child: Stack(
           children: [
-            Container(
-              key: _positionButton,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 1)),
-              child: Transform.translate(
-                offset: Offset(0.0, min(y, this.getHeight())),
+            Positioned.fill(
+              child: Container(
+                key: _positionButton,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 1)),
                 child: FlatButton(
                     color: Color(0x88c4c4c4),
                     child: Text(label),
@@ -95,14 +94,17 @@ class ScoreButtonState extends State<ScoreButton> {
                     }),
               ),
             ),
-            if (this.dragActive) Transform.translate(
-              offset: Offset(0.0, -25),
-              child: Text("Double")
+            if (this.dragActive)
+              AnimatedPositioned(
+                curve: Curves.linear,
+                top: 100,
+                duration: Duration(seconds: 3),
+                child: Text("Double"),
               ),
-            if (this.dragActive) Transform.translate(
-              offset: Offset(0.0, 50),
-              child: Text("Triple")
-              ),
+            if (this.dragActive)
+              Transform.translate(
+                  offset: Offset(0.0, 50),
+                  child: Center(child: Text("Triple"))),
           ],
         ),
       ),
