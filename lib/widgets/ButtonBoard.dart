@@ -22,13 +22,20 @@ class ButtonBoardState extends State<ButtonBoard> {
   double posLeft = 0;
   double posTop = 0;
   GlobalKey _scoreBoard = GlobalKey();
-  double scaleButton = 0.7;
-  double buttonSize = 40.0; // TODO: calculate dynamic
+
+  // The following value represent the size of the double and tripple floating buttons
+  double buttonSize = 60.0; // TODO: calculate dynamic
+  double minScale = 0.3;
+  double maxScale = 1.0;
+  double scaleButtonX2;
+  double scaleButtonX3;
 
   ButtonBoardState(
       Function(int value, [int mult]) substract, VoidCallback undo) {
     this.substract = substract;
     this.undo = undo;
+    this.scaleButtonX2 = this.minScale;
+    this.scaleButtonX3 = this.minScale;
   }
 
   @override
@@ -78,28 +85,28 @@ class ButtonBoardState extends State<ButtonBoard> {
       ]),
       if (this.dragActive)
         Positioned(
-          left: posLeft - getPosition().dx - buttonSize * scaleButton / 2,
-          top: posTop - getPosition().dy - buttonSize * scaleButton / 2,
+          left: posLeft - getPosition().dx - buttonSize * scaleButtonX2 / 2,
+          top: posTop - getPosition().dy - buttonSize * scaleButtonX2 / 2,
           child: Transform.translate(
               offset: Offset(0.0, -50),
               child: Image(
                 image: AssetImage(
                   "assets/images/x2.png",
                 ),
-                height: buttonSize * scaleButton,
-                width: buttonSize * scaleButton,
+                height: buttonSize * scaleButtonX2,
+                width: buttonSize * scaleButtonX2,
               )),
         ),
       if (this.dragActive)
         Positioned(
-          left: posLeft - getPosition().dx - buttonSize * scaleButton / 2,
-          top: posTop - getPosition().dy - buttonSize * scaleButton / 2,
+          left: posLeft - getPosition().dx - buttonSize * scaleButtonX3 / 2,
+          top: posTop - getPosition().dy - buttonSize * scaleButtonX3 / 2,
           child: Transform.translate(
               offset: Offset(0.0, 50),
               child: Image(
                 image: AssetImage("assets/images/x3.png"),
-                height: buttonSize * scaleButton,
-                width: buttonSize * scaleButton,
+                height: buttonSize * scaleButtonX3,
+                width: buttonSize * scaleButtonX3,
               )),
         )
     ]);

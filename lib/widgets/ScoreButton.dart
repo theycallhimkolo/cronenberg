@@ -62,7 +62,7 @@ class ScoreButtonState extends State<ScoreButton> {
           _positionButton.currentContext.findRenderObject();
       return renderBoxContainer.size;
     } catch (e) {
-      return Size(0,0);
+      return Size(0, 0);
     }
   }
 
@@ -86,6 +86,21 @@ class ScoreButtonState extends State<ScoreButton> {
         },
         onVerticalDragUpdate: (details) {
           y += details.primaryDelta;
+          double scale =
+              1 - (this.getSize().height - y.abs()) / this.getSize().height;
+          if (scale > this.parent.maxScale) {
+            scale = this.parent.maxScale;
+          }
+          if (scale < this.parent.minScale) {
+            scale = this.parent.minScale;
+          }
+          this.parent.setState(() {
+            if (y > 0.0) {
+              this.parent.scaleButtonX3 = scale;
+            } else {
+              this.parent.scaleButtonX2 = scale;
+            }
+          });
         },
         onVerticalDragEnd: (details) {
           this.setDragActive(false);
@@ -94,6 +109,10 @@ class ScoreButtonState extends State<ScoreButton> {
           } else if (y < this.getSize().height * -1) {
             this.parent.substract(this.value, 2);
           }
+          this.parent.setState(() {
+            this.parent.scaleButtonX3 = this.parent.minScale;
+            this.parent.scaleButtonX2 = this.parent.minScale;
+          });
           y = 0;
         },
         child: Stack(
