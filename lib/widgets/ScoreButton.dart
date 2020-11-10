@@ -44,16 +44,35 @@ class ScoreButtonState extends State<ScoreButton> {
   setDragActive(bool val) {
     this.parent.setState(() {
       this.parent.dragActive = val;
+      if (val) {
+        Offset o = getPosition();
+        Size s = getSize();
+        this.parent.posLeft = o.dx + s.width / 2;
+        this.parent.posTop = o.dy + s.height / 2;
+      } else {
+        this.parent.posLeft = 0;
+        this.parent.posTop = 0;
+      }
     });
   }
 
-  double getHeight() {
+  Size getSize() {
     try {
       final RenderBox renderBoxContainer =
           _positionButton.currentContext.findRenderObject();
-      return renderBoxContainer.size.height;
+      return renderBoxContainer.size;
     } catch (e) {
-      return 0;
+      return Size(0,0);
+    }
+  }
+
+  Offset getPosition() {
+    try {
+      final RenderBox renderBoxContainer =
+          _positionButton.currentContext.findRenderObject();
+      return renderBoxContainer.localToGlobal(Offset.zero);
+    } catch (e) {
+      return Offset(0, 0);
     }
   }
 
@@ -70,9 +89,9 @@ class ScoreButtonState extends State<ScoreButton> {
         },
         onVerticalDragEnd: (details) {
           this.setDragActive(false);
-          if (y > this.getHeight()) {
+          if (y > this.getSize().height) {
             this.parent.substract(this.value, 3);
-          } else if (y < this.getHeight() * -1) {
+          } else if (y < this.getSize().height * -1) {
             this.parent.substract(this.value, 2);
           }
           y = 0;
