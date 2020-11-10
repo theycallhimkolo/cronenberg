@@ -1,15 +1,14 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cronenberg/widgets/ButtonBoard.dart';
 
 class ScoreButton extends StatefulWidget {
-  Function target;
+  ButtonBoardState parent;
   int value;
   String label;
 
-  ScoreButton(Function target, int value, [String label]) {
-    this.target = target;
+  ScoreButton(ButtonBoardState parent, int value, [String label]) {
+    this.parent = parent;
     this.value = value;
     if (label != null) {
       this.label = label;
@@ -19,21 +18,20 @@ class ScoreButton extends StatefulWidget {
   }
 
   @override
-  ScoreButtonState createState() => ScoreButtonState(target, value, label);
+  ScoreButtonState createState() => ScoreButtonState(parent, value, label);
 }
 
 class ScoreButtonState extends State<ScoreButton> {
-  Function target;
   int value;
   String label;
+  ButtonBoardState parent;
 
   GlobalKey _positionButton = GlobalKey();
 
-  bool dragActive = false;
   double y = 0;
 
-  ScoreButtonState(Function target, int value, String label) {
-    this.target = target;
+  ScoreButtonState(ButtonBoardState parent, int value, String label) {
+    this.parent = parent;
     this.value = value;
     this.label = label;
   }
@@ -44,8 +42,8 @@ class ScoreButtonState extends State<ScoreButton> {
   }
 
   setDragActive(bool val) {
-    setState(() {
-      this.dragActive = val;
+    this.parent.setState(() {
+      this.parent.dragActive = val;
     });
   }
 
@@ -69,14 +67,13 @@ class ScoreButtonState extends State<ScoreButton> {
         },
         onVerticalDragUpdate: (details) {
           y += details.primaryDelta;
-          print(y);
         },
         onVerticalDragEnd: (details) {
           this.setDragActive(false);
           if (y > this.getHeight()) {
-            target(this.value, 3);
+            this.parent.substract(this.value, 3);
           } else if (y < this.getHeight() * -1) {
-            target(this.value, 2);
+            this.parent.substract(this.value, 2);
           }
           y = 0;
         },
@@ -91,20 +88,10 @@ class ScoreButtonState extends State<ScoreButton> {
                     color: Color(0x88c4c4c4),
                     child: Text(label),
                     onPressed: () {
-                      target(value);
+                      this.parent.substract(value);
                     }),
               ),
             ),
-            if (this.dragActive)
-              Center(
-                child: Transform.translate(
-                    offset: Offset(0.0, -25), child: Text("x2")),
-              ),
-            if (this.dragActive)
-              Center(
-                child: Transform.translate(
-                    offset: Offset(0.0, 25), child: Text("x3")),
-              ),
           ],
         ),
       ),

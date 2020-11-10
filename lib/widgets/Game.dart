@@ -162,6 +162,10 @@ class GameState extends State<Game> {
             ]),
           ),
           Expanded(
+            flex: 1,
+            child: Row(children: [Text("Die drei würfe")])
+          ),
+          Expanded(
             flex: 5,
             child: ButtonBoard(substractValue, undoLastValue),
           )
