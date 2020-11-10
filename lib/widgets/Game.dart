@@ -136,34 +136,64 @@ class GameState extends State<Game> {
             child: Row(children: [
               Expanded(
                   flex: 1,
-                  child: Container(
-                    color: Colors.green,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          this.gameState.activePlayer().name,
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.green,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      this.gameState.activePlayer().name,
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      this
+                                          .gameState
+                                          .activePlayer()
+                                          .score
+                                          .toString(),
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          this.gameState.activePlayer().score.toString(),
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Expanded(
+                          flex: 1,
+                          child: Row(children: [
+                            Expanded(
+                                flex: 1,
+                                child:
+                                    Container(child: Center(child: Text("1")))),
+                            Expanded(
+                                flex: 1,
+                                child:
+                                    Container(child: Center(child: Text("2")))),
+                            Expanded(
+                                flex: 1,
+                                child:
+                                    Container(child: Center(child: Text("3"))))
+                          ]))
+                    ],
                   ))
             ]),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(children: [Text("Die drei würfe")])
           ),
           Expanded(
             flex: 5,
